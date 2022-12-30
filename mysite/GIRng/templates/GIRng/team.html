@@ -4,14 +4,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team</title>
+    <title>Document</title>
+
+    {% load static %}
+    <link rel="stylesheet" href=" {% static 'GIRng/css/mycss.css' %} ">
+    
 </head>
 <body>
-    <ul>
-        {% for mem in members %}
-        <li> {{ mem.name }}</li>
-        {% endfor %}
-        
-    </ul>
+    {% comment %} tao mot form de them team {% endcomment %}
+    <div>
+        <form action="" method="post">
+            {% csrf_token %}
+            <label for="">Team name: </label>
+            {{ form.name }}
+            <br>
+            <label for="">Character list: </label>
+            {{ form.char_list}}
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
 </body>
 </html>

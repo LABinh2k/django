@@ -6,5 +6,6 @@ app_name = 'GIRng'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('team', views.generate, name='team')
+    path('randomize', views.generate, name='randomize'),
+    path('team', views.team, name='team'),
 ]

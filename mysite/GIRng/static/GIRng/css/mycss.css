@@ -3,18 +3,41 @@ body {
 }
 
 button {
-    background-color: yellow;
+    background-color: beige;
+    border-style: solid;
 }
 
 form {
     background-color: pink;
-    width: 20%;
     
 }
 
+div.container {
+    background-color: blueviolet;
+    min-height: 10em;  
+    position: relative;
+}
+
+div.center {
+    display: flex;
+    justify-content: center;
+}
+
+.block {
+    display: block;
+    width: 100%;
+    /* border: none; */
+    background-color: yellow;
+    padding: 14px 28px;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+}
+
 div {
-    white-space: nowrap;
-    margin-left: auto;
-    margin-right: auto;
-    width: 8em;
+    margin: 10px;
+}
+
+header {
+    
 }
