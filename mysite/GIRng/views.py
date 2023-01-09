@@ -1,9 +1,12 @@
 import random
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.template import loader, Template, Context
+from django.views.generic import ListView, DetailView
+
 
 
 from .models import Team, Character, TeamInfo
@@ -33,7 +36,7 @@ def team(request):
                 tmp.save()
             # return redirect(reverse('GIRng:team'),permanent=True, name=name, char_list=char_list)
 
-            return redirect('GIRng:index')        
+            return redirect('GIRng:team-list')        
     else:
         form = TeamForm()
         return render(request, 'GIRng/team.html', {'form': form})
@@ -75,7 +78,6 @@ def generate(request):
     context = {
         'members': char_list,
         'number': len(char_list),
-
     }
     
     # after context is added, render either through shortcut or through loader
@@ -87,3 +89,28 @@ def generate(request):
     
     # short cut
     # return render(request, 'GIRng/team.html', context)
+    
+def teamlist(request):
+    # team list
+    try:
+        t = Team.objects.all()
+    except Exception as err:
+        raise Http404(f"{str(err)}")
+    
+    return render(request, 'GIRng/team_list.html', {'teamlist': t,})
+
+def team_detail(request, team_id):
+    team = get_object_or_404(Team, pk= team_id)
+    context = {
+        "team_name" : team.name,
+    }
+    return render(request, 'GIRng/team_detail.html', context)
+
+class CharacterListView(ListView):
+    model = Character
+    context_object_name = 'character_list'
+
+class CharacterDetailView(DetailView):
+    model=Character
+    
+    

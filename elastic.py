@@ -49,7 +49,7 @@ resp = es.search(
             "bool": {
                 "must": {
                     "match_phrase": {
-                        "cast": "kok",
+                        "cast": "Ronald Cheng",
                     }
                 },
                 "filter": {"bool": {"must_not": {"match_phrase": {"director": "roman polanski"}}}},
