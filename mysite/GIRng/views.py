@@ -1,11 +1,16 @@
 import random
+import logging
 
 from django.shortcuts import render, redirect, get_object_or_404
 
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.template import loader, Template, Context
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, View
+from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 
@@ -13,11 +18,12 @@ from .models import Team, Character, TeamInfo
 from .forms import TeamForm
 # Create your views here.
 
+logger = logging.getLogger("django")
 
-    
+@login_required(login_url='accounts/login/')    
 def index(request):
     
-    
+    logger.critical("This is logger: xdding")
     return render(request, 'GIRng/index.html')
     
 def team(request):
@@ -110,7 +116,8 @@ class CharacterListView(ListView):
     model = Character
     context_object_name = 'character_list'
 
-class CharacterDetailView(DetailView):
+class CharacterDetailView(DetailView,LoginRequiredMixin):
     model=Character
     
-    
+class SignupView(View):
+    pass

@@ -9,6 +9,7 @@
     {% load static %}
     <link rel="stylesheet" href=" {% static 'GIRng/css/mycss.css' %} ">
     
+    {% load bootstrap5 %}
 </head>
 <body>
     {% comment %} tao mot form de them team {% endcomment %}
@@ -24,5 +25,7 @@
             <input type="submit" value="Submit">
         </form>
     </div>
+    
+    {% include 'bootstrap5/field_help_text.html' %}
 </body>
 </html>

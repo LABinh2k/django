@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 
 from . import views
 
@@ -12,4 +12,7 @@ urlpatterns = [
     path('<int:team_id>/',views.team_detail, name='team-detail'),
     path('characters/', views.CharacterListView.as_view(), name='characters-list'),
     path('characters/<int:pk>/', views.CharacterDetailView.as_view(), name='character-detail'),
+    # auth
+    path('accounts/', include('django.contrib.auth.urls')),
+    
 ]

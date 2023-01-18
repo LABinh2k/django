@@ -2,9 +2,14 @@ import random
 
 from django.db import models
 
-# Create your models here.    
-class Character(models.Model):
-    name = models.CharField(max_length=32)
+class Base(models.Model):
+
+    name = models.CharField(max_length=32, unique= True)
+    # description = models.CharField(max_length=255)
+    class Meta:
+        abstract = True    
+
+class Character(Base):
     ELEMENT_CHOICES = [
         ('Pyro', 'Pyro'),
         ('Cryo', 'Cryo'),
@@ -16,12 +21,43 @@ class Character(models.Model):
     ]
     
     element = models.CharField(max_length=7, choices=ELEMENT_CHOICES)
-    
+    # level = models.IntegerField()
+    # action: danh sach cac hanh dong mot character co the lam
+    # actions = models.OneToManyField(Action)
+    # passives = models.OneToManyField(Passive)
+    # artifacts = models.OneToManyField(Artifact)
+    # weapon = models.OneToOneField(Weapon)
+    # basestat = models.OneToOneField(BaseStat)
+    # constellations = models.OneToManyField(Constellation)
+
     def __str__(self):
         return self.name
-    
-class Team(models.Model):
-    name = models.CharField(max_length=32)
+# class NormalAttack(Base):
+#     pass
+
+# class ElementalSkill(Base):
+#     pass
+
+# class ElementalBurst(Base):
+#     pass
+
+# class Passive(Base):
+#     pass
+
+# class Artifact(Base):
+#     pass
+
+# class Weapon(Base):
+#     pass
+
+# class Constellation(Base):
+#     pass
+
+# class BaseStat(models.Model):
+#     pass    
+
+class Team(Base):
+    name = models.CharField(max_length=32, unique=True)
     members = models.ManyToManyField(Character, through='TeamInfo')
     
     def __str__(self):
