@@ -14,7 +14,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 
-from .models import Team, Character, TeamInfo
+from .models import Team, Character,TeamInfo
 from .forms import TeamForm
 # Create your views here.
 
@@ -35,12 +35,16 @@ def team(request):
             name = form.cleaned_data['name']
             char_list = form.cleaned_data['char_list']
             
+            # get resonance from list of character
+            # resonance = resonance(char_list)
+            
             team = Team(name=name)
             team.save()
             for char in char_list:
                 tmp = TeamInfo(character=char, team=team)
                 tmp.save()
             # return redirect(reverse('GIRng:team'),permanent=True, name=name, char_list=char_list)
+
 
             return redirect('GIRng:team-list')        
     else:

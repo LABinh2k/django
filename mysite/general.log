@@ -1474,3 +1474,4 @@ Traceback (most recent call last):
   File "D:\Project\Django\.venv\lib\site-packages\django\template\backends\django.py", line 85, in reraise
     raise new from exc
 django.template.exceptions.TemplateDoesNotExist: mysite/polls/templates/polls/index.html
+Watching for file changes with StatReloader
