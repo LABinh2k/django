@@ -1,9 +1,11 @@
 // import { API_URL } from "../constants";
-import { useEffect, useState} from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { type } from '@testing-library/user-event/dist/type';
+
+
 function getlist() {
-    
+
 }
 
 
@@ -15,12 +17,12 @@ export default function Teamlist() {
     useEffect(() => {
         setState('loading');
         axios
-            .get('https://jsonplaceholder.typicode.com/users/1')
+            .get('http://127.0.0.1:8000/girng/teamlist')
             .then((res) => {
                 console.log(res);
                 //console.log(typeof JSON.stringify(res))
                 setState('success');
-                setCatUrl(res.data);
+                setCatUrl(res);
             })
             .catch((err) => {
                 console.error('Error:', err);
@@ -35,19 +37,22 @@ export default function Teamlist() {
                 {error.toString()}
             </h1>
         );
-    
-    const listItems = 'catUrl';
+
+    const listItems = catUrl;
     return (
         <div>
             <div>
                 {state === 'loading' ? (
                     <h1>Loading...</h1>
                 ) : (
-                    listItems
+                    typeof listItems.data
                 )}
             </div>
+            <div>
+                <td dangerouslySetInnerHTML={{__html: listItems.data}} />
+            </div>
             {/* {catUrl.map(home => <div>{home.name}</div>)} */}
-                    
+
         </div>
     );
 }
