@@ -93,3 +93,4 @@ Traceback (most recent call last):
     _mysql.connection.query(self, query)
 django.db.utils.ProgrammingError: (1146, "Table 'inventory.django_session' doesn't exist")
 Not Found: /favicon.ico
+Watching for file changes with StatReloader
